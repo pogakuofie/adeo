@@ -4,6 +4,9 @@
         "mocha": true
     },
     "plugins": [],
+    "parserOptions": {
+        "ecmaVersion": 11
+    },
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "consistent-return": 0,
@@ -29,6 +32,8 @@
         "quotes": [2, "single", { "avoidEscape": true }],
         "react/jsx-indent": 0,
         "import/prefer-default-export": 0,
-        "implicit-arrow-linebreak": 0
+        "implicit-arrow-linebreak": 0,
+        "object-curly-newline": 0,
+        "allowImportExportEverywhere": 0
     }
 }
