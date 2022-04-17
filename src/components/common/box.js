@@ -11,6 +11,7 @@ const Box = ({
     height,
     style,
     justifyContent,
+    cursor,
     margin,
     ...rest
 }) => {
@@ -37,6 +38,7 @@ const Box = ({
             justifyContent={justifyContent}
             style={final}
             margin={margin}
+            cursor={cursor}
             {...rest}
         >
             {children}
@@ -66,6 +68,7 @@ const View = styled.div`
     width: ${({ width }) => `${width}px`};
     border-radius: ${({ borderRadius }) => `${borderRadius}px`};
     margin: ${({ margin }) => `${margin}px`};
+    cursor: ${({ cursor = 'default' }) => cursor};
 `;
 
 export default Box;

@@ -3,17 +3,12 @@ import { Box } from '../components/common';
 import { Button, StyledText } from '../components/common/basic';
 import { useNavigate } from 'react-router-dom';
 
-//store api
-// import { adeoApi } from '../store';
+// context
 
 // theme
 import { primaryColor } from '../theme/';
 
 function Home() {
-    // const result = adeoApi.useGetCourseQuery();
-
-    // console.log(result);
-
     const navigate = useNavigate();
 
     return (

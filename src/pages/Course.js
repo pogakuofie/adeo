@@ -6,6 +6,8 @@ import { Box } from '../components/common';
 import { QuestionPane } from '../components/course/';
 import { useNavigate } from 'react-router-dom';
 import { primaryColor } from '../theme';
+import AnswerSelector from '../components/course/answersSelector';
+import { htmlToText } from '../lib/string';
 
 function Course() {
     const [questions, setQuestions] = useState([]);
@@ -28,7 +30,7 @@ function Course() {
             const temp = data.filter((item, index) => {
                 const { text } = item;
 
-                var question = text.replace(/<[^>]+>/g, '');
+                var question = htmlToText(text);
 
                 return question !== '';
             });
@@ -65,7 +67,7 @@ function Course() {
                         flexDirection: 'column',
                     }}
                 >
-                    <Box style={{ flex: 1 }}></Box>
+                    <AnswerSelector answers={questions[stage]?.answers} />
                     <Box>
                         <Button
                             radius={5}
