@@ -1,0 +1,13 @@
+{
+    "extends": "react-app",
+    "env": {
+        "mocha": true
+    },
+    "plugins": [],
+    "parserOptions": {
+        "ecmaVersion": 11
+    },
+    "rules": {
+        "quotes": [2, "single", { "avoidEscape": true }]
+    }
+}
