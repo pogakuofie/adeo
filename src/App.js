@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApiProvider } from '@reduxjs/toolkit/query/react';
-import { adeoApi } from './store';
 
 // pages
 import { Home, Course, Result } from './pages';
 
+// context
+import CourseContext from './context';
+
 function App() {
     return (
-        <ApiProvider api={adeoApi}>
+        <CourseContext.ProviderWrapper>
             <Router>
                 <Routes>
                     <Route element={<Home />} path="/" />
@@ -16,7 +17,7 @@ function App() {
                     <Route element={<Result />} path="/result" />
                 </Routes>
             </Router>
-        </ApiProvider>
+        </CourseContext.ProviderWrapper>
     );
 }
 

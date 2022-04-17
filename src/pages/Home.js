@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '../components/common';
 import { Button, StyledText } from '../components/common/basic';
 import { useNavigate } from 'react-router-dom';
 
-//store api
-// import { adeoApi } from '../store';
+// hooks
+import useCourse from '../hooks';
 
 // theme
 import { primaryColor } from '../theme/';
 
 function Home() {
-    // const result = adeoApi.useGetCourseQuery();
-
-    // console.log(result);
-
     const navigate = useNavigate();
+
+    const { getAdeoData } = useCourse();
+
+    useEffect(() => {
+        getAdeoData();
+    }, []);
 
     return (
         <Box

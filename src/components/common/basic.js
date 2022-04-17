@@ -10,6 +10,7 @@ const StyledText = styled.p`
     font-family: 'Akshar', sans-serif;
     font-weight: ${({ weight }) => weight};
     letter-spacing: 0.5px;
+    pointer: ${({ pointer = 'default' }) => pointer};
 `;
 
 const Button = styled.div`

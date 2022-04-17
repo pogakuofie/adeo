@@ -10,6 +10,8 @@ const Box = ({
     width,
     height,
     style,
+    justifyContent,
+    cursor,
     margin,
     ...rest
 }) => {
@@ -33,8 +35,10 @@ const Box = ({
             height={height}
             width={width}
             padding={padding}
+            justifyContent={justifyContent}
             style={final}
             margin={margin}
+            cursor={cursor}
             {...rest}
         >
             {children}
@@ -57,11 +61,14 @@ Box.propTypes = {
 };
 
 const View = styled.div`
+    display: flex;
+    justify-content: ${({ justifyContent = 'center' }) => justifyContent};
     padding: ${({ padding = 16 }) => `${padding}px`};
     height: ${({ height }) => `${height}px`};
     width: ${({ width }) => `${width}px`};
     border-radius: ${({ borderRadius }) => `${borderRadius}px`};
     margin: ${({ margin }) => `${margin}px`};
+    cursor: ${({ cursor = 'default' }) => cursor};
 `;
 
 export default Box;

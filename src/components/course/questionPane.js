@@ -4,11 +4,18 @@ import React from 'react';
 import { Box } from '../common';
 import { StyledText } from '../common/basic';
 
-const QuestionPane = ({ question }) => {
-    const { text } = question || {};
+// hooks
+import useCourse from '../../hooks';
 
-    const pure = text?.replace(/<[^>]+>/g, '');
+// lib
+import { htmlToText } from '../../lib/string';
 
+const QuestionPane = () => {
+    const { questions, currentQuestion } = useCourse();
+
+    const { text } = questions[currentQuestion];
+
+    const pure = htmlToText(text);
     return (
         <Box
             backgroundColor={'#222E3B'}
