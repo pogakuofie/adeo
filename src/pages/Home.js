@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 //store api
 // import { adeoApi } from '../store';
 
+// theme
+import { primaryColor } from '../theme/';
+
 function Home() {
     // const result = adeoApi.useGetCourseQuery();
 
@@ -15,7 +18,7 @@ function Home() {
 
     return (
         <Box
-            backgroundColor={'#00C664'}
+            backgroundColor={primaryColor}
             weight={'medium'}
             style={{
                 height: '100vh',
@@ -52,7 +55,6 @@ function Home() {
                 </StyledText>
                 <Button
                     onClick={() => {
-                        console.log('Hi');
                         navigate('/course');
                     }}
                     color={'white'}

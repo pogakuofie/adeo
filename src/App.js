@@ -4,7 +4,7 @@ import { ApiProvider } from '@reduxjs/toolkit/query/react';
 import { adeoApi } from './store';
 
 // pages
-import { Home, Course } from './pages';
+import { Home, Course, Result } from './pages';
 
 function App() {
     return (
@@ -13,6 +13,7 @@ function App() {
                 <Routes>
                     <Route element={<Home />} path="/" />
                     <Route element={<Course />} path="/course" />
+                    <Route element={<Result />} path="/result" />
                 </Routes>
             </Router>
         </ApiProvider>
