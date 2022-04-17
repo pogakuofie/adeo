@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '../components/common';
 import { Button, StyledText } from '../components/common/basic';
 import { useNavigate } from 'react-router-dom';
 
-// context
+// hooks
+import useCourse from '../hooks';
 
 // theme
 import { primaryColor } from '../theme/';
 
 function Home() {
     const navigate = useNavigate();
+
+    const { getAdeoData } = useCourse();
+
+    useEffect(() => {
+        getAdeoData();
+    }, []);
 
     return (
         <Box

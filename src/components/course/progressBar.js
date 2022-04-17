@@ -1,8 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // components
 import { Box } from '../common/';
 import { StyledText } from '../common/basic';
+
+// hooks
+import useCourse from '../../hooks';
 
 // theme
 import { primaryColor } from '../../theme/';
@@ -10,7 +13,9 @@ import { primaryColor } from '../../theme/';
 // lib
 import { setTime } from '../../lib/timer';
 
-const ProgressBar = ({ stages, stage }) => {
+const ProgressBar = () => {
+    const { questions, currentQuestion } = useCourse();
+
     const [startTime] = useState(Date.now());
     const [timeSpent, setTimeSpent] = useState('00:00');
 
@@ -35,7 +40,7 @@ const ProgressBar = ({ stages, stage }) => {
             style={{ height: 80 }}
         >
             <Box padding={0}>
-                {stages.map((item, index) => {
+                {questions.map((item, index) => {
                     const { id } = item;
                     return (
                         <Box
@@ -49,7 +54,7 @@ const ProgressBar = ({ stages, stage }) => {
                                     {index + 1}
                                 </StyledText>
                             </Box>
-                            {stage === index && (
+                            {currentQuestion === index && (
                                 <Box
                                     padding={0}
                                     width={30}

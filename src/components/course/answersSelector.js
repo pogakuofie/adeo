@@ -4,12 +4,17 @@ import React, { useState } from 'react';
 import { AnswerCard } from './';
 import { Box } from '../common/';
 
-const AnswerSelector = ({ answers }) => {
+// hooks
+import useCourse from '../../hooks';
+
+const AnswerSelector = () => {
+    const { questions, currentQuestion } = useCourse();
+
     const [selectedAnswer, setSelectedAnswer] = useState(-1);
 
     return (
         <Box style={{ flex: 1, flexDirection: 'column' }}>
-            {answers?.map((item, index) => {
+            {questions[currentQuestion].answers.map((item, index) => {
                 const { text, id } = item;
 
                 return (
