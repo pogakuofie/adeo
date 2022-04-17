@@ -10,6 +10,7 @@ const Box = ({
     width,
     height,
     style,
+    justifyContent,
     margin,
     ...rest
 }) => {
@@ -33,6 +34,7 @@ const Box = ({
             height={height}
             width={width}
             padding={padding}
+            justifyContent={justifyContent}
             style={final}
             margin={margin}
             {...rest}
@@ -57,6 +59,8 @@ Box.propTypes = {
 };
 
 const View = styled.div`
+    display: flex;
+    justify-content: ${({ justifyContent = 'center' }) => justifyContent};
     padding: ${({ padding = 16 }) => `${padding}px`};
     height: ${({ height }) => `${height}px`};
     width: ${({ width }) => `${width}px`};

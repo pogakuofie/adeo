@@ -5,6 +5,7 @@ import ProgressBar from '../components/course/progressBar';
 import { Box } from '../components/common';
 import { QuestionPane } from '../components/course/';
 import { useNavigate } from 'react-router-dom';
+import { primaryColor } from '../theme';
 
 function Course() {
     const [questions, setQuestions] = useState([]);
@@ -53,9 +54,7 @@ function Course() {
             <Box
                 padding={0}
                 style={{
-                    display: 'flex',
                     flex: 1,
-                    flexDirection: 'row',
                 }}
             >
                 <Box backgroundColor={'#222E3B'} style={{ flex: 1 }}></Box>
@@ -63,13 +62,15 @@ function Course() {
                     backgroundColor={'#2D3E50'}
                     style={{
                         flex: 1,
-                        display: 'flex',
                         flexDirection: 'column',
                     }}
                 >
                     <Box style={{ flex: 1 }}></Box>
-                    <Box style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Box>
                         <Button
+                            radius={5}
+                            backgroundColor={primaryColor}
+                            borderColor={primaryColor}
                             margin={8}
                             onClick={() => {
                                 if (stage > 0) setStage(stage - 1);
@@ -78,6 +79,9 @@ function Course() {
                             <StyledText color="white">Previous</StyledText>
                         </Button>
                         <Button
+                            radius={5}
+                            backgroundColor={primaryColor}
+                            borderColor={primaryColor}
                             margin={8}
                             onClick={() => {
                                 if (stage < questions.length - 1) {

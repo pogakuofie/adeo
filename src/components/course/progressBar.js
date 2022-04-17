@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 // components
 import { Box } from '../common/';
@@ -7,41 +7,75 @@ import { StyledText } from '../common/basic';
 // theme
 import { primaryColor } from '../../theme/';
 
+// lib
+import { setTime } from '../../lib/timer';
+
 const ProgressBar = ({ stages, stage }) => {
+    const [startTime] = useState(Date.now());
+    const [timeSpent, setTimeSpent] = useState('00:00');
+
+    useEffect(() => {
+        getTime();
+    }, []);
+
+    const getTime = () => {
+        setTimeout(() => {
+            const time = setTime(startTime);
+
+            setTimeSpent(time);
+
+            getTime();
+        }, 1000);
+    };
+
     return (
         <Box
+            justifyContent={'space-between'}
             backgroundColor={primaryColor}
-            style={{ height: 80, display: 'flex', width: '100vw' }}
+            style={{ height: 80 }}
         >
-            {stages.map((item, index) => {
-                const { id } = item;
-                return (
-                    <Box
-                        key={id}
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                        }}
-                    >
-                        <Box padding={0}>
-                            <StyledText color="white" align={'center'}>
-                                {index + 1}
-                            </StyledText>
+            <Box padding={0}>
+                {stages.map((item, index) => {
+                    const { id } = item;
+                    return (
+                        <Box
+                            key={id}
+                            style={{
+                                flexDirection: 'column',
+                            }}
+                        >
+                            <Box padding={0}>
+                                <StyledText color="white" align={'center'}>
+                                    {index + 1}
+                                </StyledText>
+                            </Box>
+                            {stage === index && (
+                                <Box
+                                    padding={0}
+                                    width={30}
+                                    height={5}
+                                    borderRadius={3}
+                                    margin={3}
+                                    style={{ backgroundColor: 'white' }}
+                                />
+                            )}
                         </Box>
-                        {stage === index && (
-                            <Box
-                                padding={0}
-                                width={30}
-                                height={5}
-                                borderRadius={3}
-                                margin={3}
-                                style={{ backgroundColor: 'white' }}
-                            />
-                        )}
-                    </Box>
-                );
-            })}
+                    );
+                })}
+            </Box>
+            <Box
+                borderRadius={500}
+                backgroundColor={'white'}
+                style={{ marginTop: -40, marginRight: -5 }}
+            >
+                <StyledText
+                    style={{ marginRight: 15 }}
+                    size={34}
+                    color={primaryColor}
+                >
+                    {timeSpent}
+                </StyledText>
+            </Box>
         </Box>
     );
 };
