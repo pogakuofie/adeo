@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // components
 import { AnswerCard } from './';
@@ -8,9 +8,8 @@ import { Box } from '../common/';
 import useCourse from '../../hooks';
 
 const AnswerSelector = () => {
-    const { questions, currentQuestion } = useCourse();
-
-    const [selectedAnswer, setSelectedAnswer] = useState(-1);
+    const { questions, currentQuestion, setSelectedAnswer, selectedAnswer } =
+        useCourse();
 
     return (
         <Box style={{ flex: 1, flexDirection: 'column' }}>

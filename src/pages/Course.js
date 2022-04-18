@@ -11,7 +11,13 @@ import AnswerSelector from '../components/course/answersSelector';
 import useCourse from '../hooks';
 
 function Course() {
-    const { questions, currentQuestion, setCurrentQuestion } = useCourse();
+    const {
+        questions,
+        currentQuestion,
+        setCurrentQuestion,
+        saveAnswer,
+        selectedAnswer,
+    } = useCourse();
 
     const navigate = useNavigate();
 
@@ -48,27 +54,35 @@ function Course() {
                             backgroundColor={primaryColor}
                             borderColor={primaryColor}
                             margin={8}
+                            disabled={currentQuestion === 0}
+                            color={'white'}
                             onClick={() => {
                                 if (currentQuestion > 0)
                                     setCurrentQuestion(currentQuestion - 1);
                             }}
                         >
-                            <StyledText color="white">Previous</StyledText>
+                            <StyledText>Previous</StyledText>
                         </Button>
                         <Button
                             radius={5}
                             backgroundColor={primaryColor}
                             borderColor={primaryColor}
                             margin={8}
+                            disabled={selectedAnswer === -1}
+                            color={'white'}
                             onClick={() => {
+                                if (selectedAnswer === -1) {
+                                    return;
+                                }
+
                                 if (currentQuestion < questions.length - 1) {
-                                    setCurrentQuestion(currentQuestion + 1);
+                                    saveAnswer();
                                 } else {
                                     navigate('/result');
                                 }
                             }}
                         >
-                            <StyledText color="white">Next</StyledText>
+                            <StyledText>Next</StyledText>
                         </Button>
                     </Box>
                 </Box>

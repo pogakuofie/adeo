@@ -18,13 +18,37 @@ const Button = styled.div`
     justify-content: ${({ alignContent = 'center' }) => alignContent};
     align-items: ${({ alignItems = 'center' }) => alignItems};
     align-self: ${({ alignSelf = 'center' }) => alignSelf};
-    cursor: ${({ cursor = 'pointer' }) => cursor};
-    background-color: ${({ backgroundColor }) => backgroundColor};
-    color: ${({ color }) => color};
+    cursor: ${({ cursor = 'pointer', disabled }) => {
+        if (!disabled) {
+            return cursor;
+        } else {
+            return 'not-allowed';
+        }
+    }};
+    background-color: ${({ backgroundColor, disabled }) => {
+        if (!disabled) {
+            return backgroundColor;
+        } else {
+            return '#F2F2F2';
+        }
+    }};
+    color: ${({ color, disabled }) => {
+        if (!disabled) {
+            return color;
+        } else {
+            return '#C9C9C9';
+        }
+    }};
     border-radius: ${({ radius = 30 }) => `${radius}px`};
     margin: ${({ margin = 0 }) => `${margin}px`};
     border-width: ${({ borderWidth = 2 }) => `${borderWidth}px`};
-    border-color: ${({ borderColor = 'white' }) => borderColor};
+    border-color: ${({ borderColor = 'white', disabled }) => {
+        if (!disabled) {
+            return borderColor;
+        } else {
+            return '#C9C9C9';
+        }
+    }};
     border-style: ${({ borderStyle = 'solid' }) => borderStyle};
     height: ${({ height = 30 }) => `${height}px`};
     width: ${({ width = 150 }) => `${width}px`};
