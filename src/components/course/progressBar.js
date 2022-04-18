@@ -14,9 +14,8 @@ import { primaryColor } from '../../theme/';
 import { setTime } from '../../lib/timer';
 
 const ProgressBar = () => {
-    const { questions, currentQuestion } = useCourse();
+    const { questions, currentQuestion, startTime } = useCourse();
 
-    const [startTime] = useState(Date.now());
     const [timeSpent, setTimeSpent] = useState('00:00');
 
     useEffect(() => {
