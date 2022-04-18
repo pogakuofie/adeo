@@ -13,10 +13,15 @@ const Provider = ({ children }) => {
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(-1);
+    const [isFetchingCourse, setIsFetchingCourse] = useState(false);
 
-    const getAdeoData = async () => {
+    const getAdeoData = async (navigate) => {
         try {
+            setIsFetchingCourse(true);
+
             const { data } = await fetchAdeoData();
+
+            setIsFetchingCourse(false);
 
             const temp = data.filter((item, index) => {
                 const { text } = item;
@@ -27,8 +32,10 @@ const Provider = ({ children }) => {
             });
 
             setQuestions(temp.slice(0, 20));
+
+            navigate('/course');
         } catch (e) {
-            console.error(e);
+            setIsFetchingCourse(false);
         }
     };
 
@@ -55,6 +62,7 @@ const Provider = ({ children }) => {
                 saveAnswer,
                 selectedAnswer,
                 setSelectedAnswer,
+                isFetchingCourse,
             }}
         >
             {children}

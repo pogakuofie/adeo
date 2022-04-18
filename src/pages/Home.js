@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box } from '../components/common';
+import { Box, LoadingDialog } from '../components/common';
 import { Button, StyledText } from '../components/common/basic';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,63 +10,61 @@ import useCourse from '../hooks';
 import { primaryColor } from '../theme/';
 
 function Home() {
+    const { getAdeoData, isFetchingCourse } = useCourse();
+
     const navigate = useNavigate();
 
-    const { getAdeoData } = useCourse();
-
-    useEffect(() => {
-        getAdeoData();
-    }, []);
+    useEffect(() => {}, []);
 
     return (
-        <Box
-            backgroundColor={primaryColor}
-            weight={'medium'}
-            style={{
-                height: '100vh',
-                width: '100vw',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-        >
+        <>
+            {isFetchingCourse && <LoadingDialog />}
             <Box
+                backgroundColor={primaryColor}
+                weight={'medium'}
                 style={{
-                    height: 450,
-                    width: 360,
-                    padding: 10,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-around',
+                    height: '100vh',
+                    width: '100vw',
+                    alignItems: 'center',
                 }}
             >
-                <StyledText
-                    color="white"
-                    weight={400}
-                    size={32}
-                    align={'center'}
-                >
-                    Welcome to the Adeo Experience
-                </StyledText>
-                <StyledText color="white" weight={300} align={'center'}>
-                    You currently have NO Subscriptions.
-                </StyledText>
-                <StyledText color="white" weight={300} align={'center'}>
-                    First take a diagnostic testto determine the right course
-                    for you.
-                </StyledText>
-                <Button
-                    onClick={() => {
-                        navigate('/course');
+                <Box
+                    height={450}
+                    width={360}
+                    style={{
+                        padding: 10,
+                        flexDirection: 'column',
+                        justifyContent: 'space-around',
                     }}
-                    color={'white'}
                 >
-                    <StyledText style={{ cursor: 'pointer' }}>
-                        Let's Go
+                    <StyledText
+                        color="white"
+                        weight={400}
+                        size={32}
+                        align={'center'}
+                    >
+                        Welcome to the Adeo Experience
                     </StyledText>
-                </Button>
+                    <StyledText color="white" weight={300} align={'center'}>
+                        You currently have NO Subscriptions.
+                    </StyledText>
+                    <StyledText color="white" weight={300} align={'center'}>
+                        First take a diagnostic testto determine the right
+                        course for you.
+                    </StyledText>
+                    <Button
+                        onClick={() => {
+                            getAdeoData(navigate);
+                        }}
+                        color={'white'}
+                    >
+                        <StyledText style={{ cursor: 'pointer' }}>
+                            Let's Go
+                        </StyledText>
+                    </Button>
+                </Box>
             </Box>
-        </Box>
+        </>
     );
 }
 
