@@ -12,6 +12,7 @@ const CourseContext = createContext({});
 const Provider = ({ children }) => {
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [selectedAnswer, setSelectedAnswer] = useState(-1);
 
     const getAdeoData = async () => {
         try {
@@ -31,6 +32,19 @@ const Provider = ({ children }) => {
         }
     };
 
+    const saveAnswer = () => {
+        questions[currentQuestion].answer = selectedAnswer;
+
+        const qtn = [...questions];
+
+        qtn[currentQuestion].answer = selectedAnswer;
+
+        setQuestions(qtn);
+
+        setSelectedAnswer(-1);
+        setCurrentQuestion(currentQuestion + 1);
+    };
+
     return (
         <CourseContext.Provider
             value={{
@@ -38,6 +52,9 @@ const Provider = ({ children }) => {
                 getAdeoData,
                 currentQuestion,
                 setCurrentQuestion,
+                saveAnswer,
+                selectedAnswer,
+                setSelectedAnswer,
             }}
         >
             {children}
