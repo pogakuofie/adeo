@@ -51,4 +51,6 @@ const Toggle = styled.div`
     float: ${({ checked }) => (checked ? 'right' : 'left')};
 `;
 
+const Label = styled.label``;
+
 export default ToggleSwitch;
