@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyledText } from './basic';
 
 // components
-import Box from './box';
+import { Box } from './';
+import { StyledText } from './basic';
 
 const LoadingDialog = () => {
     return (
@@ -32,9 +32,7 @@ const LoadingDialog = () => {
                 </StyledText>
                 <StyledText weight={300} align={'center'}>
                     A personalize set of question to test your <br />
-                    <StyledText weight={500} align={'center'}>
-                        super powers.
-                    </StyledText>
+                    super powers.
                 </StyledText>
                 <StyledText weight={300} align={'center'}>
                     Feel free to grab a cup of <br />

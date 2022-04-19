@@ -21,7 +21,6 @@ function Home() {
             {isFetchingCourse && <LoadingDialog />}
             <Box
                 backgroundColor={primaryColor}
-                weight={'medium'}
                 style={{
                     height: '100vh',
                     width: '100vw',
@@ -49,7 +48,7 @@ function Home() {
                         You currently have NO Subscriptions.
                     </StyledText>
                     <StyledText color="white" weight={300} align={'center'}>
-                        First take a diagnostic testto determine the right
+                        First take a diagnostic test to determine the right
                         course for you.
                     </StyledText>
                     <Button

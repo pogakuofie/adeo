@@ -1,5 +1,5 @@
-function setTime(start) {
-    const total = Date.now() / 1000 - start / 1000;
+function setTime(start, end = Date.now()) {
+    const total = end / 1000 - start / 1000;
     const minuite = pad(parseInt(total / 60));
     const seconds = pad(total % 60);
 

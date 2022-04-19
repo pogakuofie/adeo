@@ -75,14 +75,14 @@ function Course() {
                                     return;
                                 }
 
-                                if (currentQuestion < questions.length - 1) {
-                                    saveAnswer();
-                                } else {
-                                    navigate('/result');
-                                }
+                                saveAnswer(navigate);
                             }}
                         >
-                            <StyledText>Next</StyledText>
+                            <StyledText>
+                                {currentQuestion === questions.length - 1
+                                    ? 'Submit'
+                                    : 'Next'}
+                            </StyledText>
                         </Button>
                     </Box>
                 </Box>
