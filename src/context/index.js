@@ -34,7 +34,7 @@ const Provider = ({ children }) => {
                 return question !== '';
             });
 
-            setQuestions(temp.slice(0, 3));
+            setQuestions(temp.slice(0, 12));
 
             navigate('/course');
 
