@@ -14,7 +14,7 @@ const Provider = ({ children }) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(-1);
     const [isFetchingCourse, setIsFetchingCourse] = useState(false);
-    const [startTime, setStartTime] = useState();
+    const [startTime, setStartTime] = useState(0);
     const [timeCompleted, setTimeCompleted] = useState(0);
     const [courseScore, setCourseScore] = useState(0);
 
@@ -54,6 +54,8 @@ const Provider = ({ children }) => {
         setQuestions(qtn);
 
         if (currentQuestion === questions.length - 1) {
+            setSelectedAnswer(-1);
+            setCurrentQuestion(0);
             saveCompletion(navigate);
         } else {
             setSelectedAnswer(-1);

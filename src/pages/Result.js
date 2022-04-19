@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // components
-import { StyledText } from '../components/common/basic';
-import { Box } from '../components/common/';
+import { Button, StyledText } from '../components/common/basic';
+import { Box, ToggleSwitch } from '../components/common/';
+import { ResultStats, TopicCard } from '../components/course';
 
 // hooks
 import useCourse from '../hooks/';
 
-// lib
-import { setTime } from '../lib/timer';
-
 function Result() {
-    const { questions, startTime, timeCompleted, courseScore } = useCourse();
+    const { questions } = useCourse();
 
-    const [timeSpent, setTimeSpent] = useState('00:00');
-
-    useEffect(() => {
-        const time = setTime(startTime, timeCompleted);
-
-        setTimeSpent(time);
-    }, []);
+    const navigate = useNavigate();
 
     return (
         <Box
@@ -38,70 +31,111 @@ function Result() {
                     flexDirection: 'column',
                 }}
             >
-                <Box padding={1}>
-                    <Box style={{ flexDirection: 'column' }}>
-                        <StyledText
-                            align={'center'}
-                            color="#707070"
-                            size={24}
-                            weight={600}
-                        >
-                            {`${courseScore}%`}
-                        </StyledText>
-                        <StyledText
-                            align={'center'}
-                            color="#707070"
-                            size={12}
-                            weight={200}
-                        >
-                            Score
-                        </StyledText>
-                    </Box>
-                    <Box style={{ flexDirection: 'column' }}>
-                        <StyledText
-                            align={'center'}
-                            color="#707070"
-                            size={24}
-                            weight={600}
-                        >
-                            {timeSpent}
-                        </StyledText>
-                        <StyledText
-                            align={'center'}
-                            color="#707070"
-                            size={12}
-                            weight={200}
-                        >
-                            Time Taken
-                        </StyledText>
-                    </Box>
-                    <Box style={{ flexDirection: 'column' }}>
-                        <StyledText
-                            align={'center'}
-                            color="#707070"
-                            size={24}
-                            weight={600}
-                        >
-                            {questions.length}
-                        </StyledText>
-                        <StyledText
-                            align={'center'}
-                            color="#707070"
-                            size={12}
-                            weight={200}
-                        >
-                            Questions
-                        </StyledText>
-                    </Box>
-                </Box>
+                <ResultStats />
                 <Box
                     padding={1}
                     width={180}
                     height={1}
                     backgroundColor={'white'}
                 />
+                <Box>
+                    <Button
+                        height={35}
+                        color="white"
+                        backgroundColor={'#2589CE'}
+                        style={{
+                            borderTopRightRadius: 0,
+                            borderBottomRightRadius: 0,
+                        }}
+                        borderWidth={0}
+                    >
+                        <StyledText>Topics</StyledText>
+                    </Button>
+                    <Button
+                        height={35}
+                        color="white"
+                        backgroundColor={'#2A9CEA'}
+                        style={{
+                            borderTopLeftRadius: 0,
+                            borderBottomLeftRadius: 0,
+                        }}
+                        borderWidth={0}
+                    >
+                        <StyledText>Questions</StyledText>
+                    </Button>
+                </Box>
+                <Box style={{ flexDirection: 'column' }}>
+                    <Box
+                        style={{
+                            alignSelf: 'flex-end',
+                            paddingBottom: 10,
+                        }}
+                        padding={0}
+                    >
+                        <ToggleSwitch lable={'%'} />
+                    </Box>
+                    <TopicCard topic={'Cell'} />
+                    <TopicCard topic={'Density'} />
+                    <TopicCard topic={'Density'} />
+                    <TopicCard
+                        color={'white'}
+                        backgroundColor={'#2A9CEA'}
+                        topic={'Matter'}
+                    />
+                </Box>
             </Box>
-            <Box backgroundColor={'#2D3E50'} style={{ flex: 2 }}></Box>
+            <Box
+                backgroundColor={'#2D3E50'}
+                style={{ flex: 2, alignItems: 'flex-start' }}
+            >
+                <Box style={{ flexDirection: 'column' }}>
+                    <StyledText
+                        color="white"
+                        weight={400}
+                        size={32}
+                        align={'center'}
+                        style={{ marginTop: 100 }}
+                    >
+                        This was a free diagnostic test
+                    </StyledText>
+                    <StyledText
+                        margin={50}
+                        color="white"
+                        weight={300}
+                        align={'center'}
+                    >
+                        Buy a subscription to unlock the entire course
+                    </StyledText>
+                    <Box padding={20}>
+                        <Button
+                            margin={10}
+                            radius={5}
+                            backgroundColor={'#07C4FF'}
+                            borderColor={'#07C4FF'}
+                            onClick={() => {}}
+                            color={'white'}
+                        >
+                            <StyledText style={{ cursor: 'pointer' }}>
+                                Store
+                            </StyledText>
+                        </Button>
+                        <Button
+                            margin={10}
+                            radius={5}
+                            backgroundColor={'#FF8071'}
+                            borderColor={'#FF8071'}
+                            onClick={() => {
+                                navigate('/');
+                            }}
+                            color={'white'}
+                        >
+                            <StyledText style={{ cursor: 'pointer' }}>
+                                Home
+                            </StyledText>
+                        </Button>
+                    </Box>
+                </Box>
+            </Box>
         </Box>
     );
 }
